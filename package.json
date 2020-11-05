@@ -1,0 +1,38 @@
+{
+  "name": "muud",
+  "version": "1.0.0",
+  "description": "an extension to mingy to add aliases, promise support, and array returns",
+  "main": "./dist/index.js",
+  "typings": "./dist/src/index.d.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "webpack --config webpack.config.js",
+    "test": "ava-ts src/**/*.spec.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seiyria/muud.git"
+  },
+  "keywords": [
+    "mud",
+    "parser",
+    "mud parser",
+    "mingy",
+    "command",
+    "command parser"
+  ],
+  "author": "Kyle Kemp <kyle@seiyria.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seiyria/muud/issues"
+  },
+  "homepage": "https://github.com/seiyria/muud#readme",
+  "devDependencies": {
+    "@types/node": "^9.4.6",
+    "ava-ts": "^0.24.2",
+    "awesome-typescript-loader": "^3.4.1",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.7.2",
+    "webpack": "^3.11.0"
+  }
+}
