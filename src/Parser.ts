@@ -1,6 +1,10 @@
 import { Command } from './Command';
-import { Env, LexemeTransform, Validator } from './fntypes';
 
+export type Env = Record<string, any>;
+
+export type Validator = (lexeme: string, env: Env) => { success: boolean, value?: any, message?: string };
+
+export type LexemeTransform = (lexemes: string[], env: Env) => string[];
 
 export class Parser {
 
