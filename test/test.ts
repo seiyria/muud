@@ -45,4 +45,7 @@ parser.addCommand('zoop')
 
   const res4 = await parser.parse('zoop1 suffix');
   console.log(res4);
+
+  const res5 = await parser.parse('zoop1 suffix', { test: 2 });
+  console.log(res5);
 })();

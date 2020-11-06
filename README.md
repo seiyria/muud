@@ -17,6 +17,7 @@ There are a few, mostly syntactical:
 * `logic` functions can now be `async`.
 * `logic` functions now _always_ return an array. You can return multiple messages back to the user in order this way, without any hacky workarounds.
 * `Command#set()` has been split out into `setSyntax` and `setLogic`.
+* You can pass an `Env` into `Parser#parse` to set a scoped `Env` for that specific run of the parser.
 * You can now have multiple prefix aliases when setting command syntax, to avoid redundancy: `setSyntax(['go', 'travel'], '<string:direction>')`. This would expand into `go <string:direction>` and `travel <string:direction>`.
 
 ## Usage
@@ -57,6 +58,9 @@ console.log(res3);  // ['Went', 'north']
 
 const res4 = await parser.parse('zoop1 suffix');
 console.log(res4);  // ['zoop', 1]
+
+const res5 = await parser.parse('zoop1 suffix', { test: 2 });
+console.log(res5);  // ['zoop', 2]
 ```
 
 # Contributing

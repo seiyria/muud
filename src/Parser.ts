@@ -47,22 +47,24 @@ export class Parser {
     return input;
   }
 
-  public async parse(input: string): Promise<string | string[]> {
+  public async parse(input: string, scopedEnv?: Env): Promise<string | string[]> {
     input = this.cleanInput(input);
 
     const lexemes = input.split(' ');
-    const result = await this.parseLexemes(lexemes);
+    const result = await this.parseLexemes(lexemes, scopedEnv);
 
     return result.flat();
   }
 
-  private async parseLexemes(lexemes: string[]): Promise<string[]> {
+  private async parseLexemes(lexemes: string[], scopedEnv?: Env): Promise<string[]> {
+
+    const mergedEnv = Object.assign({}, this.env, scopedEnv || {});
 
     const output = [];
 
     // cycle through plugins
     for (const index in this.lexemeTransforms) {
-      lexemes = this.lexemeTransforms[index](lexemes, this.env);
+      lexemes = this.lexemeTransforms[index](lexemes, mergedEnv);
     }
 
     // cycle through commands looking for syntax match
@@ -71,7 +73,7 @@ export class Parser {
 
       const command = validCommands[index];
 
-      const result = await command.try(this.validators, this.env, lexemes, false);
+      const result = await command.try(this.validators, mergedEnv, lexemes, false);
 
       if (result) {
         output.push(result);
@@ -82,7 +84,7 @@ export class Parser {
     return output;
   }
 
-  private validCommands(lexemes): Command[] {
+  private validCommands(lexemes: string[]): Command[] {
 
     const commands = [];
 
