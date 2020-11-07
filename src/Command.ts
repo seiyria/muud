@@ -1,6 +1,6 @@
 import { Env, Validator } from './Parser';
 
-export type ParserLogicFunction = ({ env: Env, args: any }) => Promise<string | string[]>;
+export type ParserLogicFunction = ({ env, args }: { env?: Env, args?: any }) => Promise<string | string[]>;
 
 export class Command {
 
