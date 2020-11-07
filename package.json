@@ -1,6 +1,6 @@
 {
   "name": "muud",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "an extension to mingy to add aliases, promise support, and array returns",
   "main": "./dist/index.js",
   "typings": "./dist/src/index.d.ts",
